@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"goTour/floatNum"
 	"goTour/models"
 )
 
@@ -18,4 +19,6 @@ func main() {
 	}
 
 	fmt.Printf("Laptop: %s %s with %d RAM, Price: $%.2f\n", mac.Brand, mac.Model, mac.Memory, mac.Price)
+
+	floatNum.Sum()
 }
