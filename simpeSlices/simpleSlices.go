@@ -49,16 +49,27 @@ func Simpeslices() {
 	fmt.Println("makeSlice", len(makeSlice), cap(makeSlice))
 	fmt.Println("newList", len(newList), cap(newList))
 
-	// testSlice := make([]int, 5, 5);
+	testSlice := make([]int, 5, 5);
 
-	// aa :=  Append(testSlice, 99)
-	// fmt.Println("aa", testSlice)
+	aa := Append(testSlice, 99, 52, 3453)
+	fmt.Println("aa", aa)
 }
 
-func Append(list []int, elem int) []int {
-	newList := make([]int, len(list) + 1, cap(list)+1)
+func Append(list []int, elems ...int) []int {
+	// Определяю размер возвращаемого массива
+	newList := make([]int, len(list) + len(elems), cap(list)+ cap(elems))
+
+	// Копирую изначальные занчения в исходящий слайс
 	copy(newList, list)
 
-	newList[len(list)] = elem
+	// определяю конец исходного слайса
+	idxAdding := len(list)
+
+	// Добавляю в конец слайса новые элементы
+	for _, val := range elems {
+		newList[idxAdding] = val
+		idxAdding++
+	}
+
 	return newList
 }
