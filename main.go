@@ -1,7 +1,7 @@
 package main
 
 import (
-	simpeslices "goTour/simpeSlices"
+	"goTour/loop"
 )
 
 func main() {
@@ -20,6 +20,7 @@ func main() {
 
 	// floatNum.Sum()
 
-	simpeslices.Simpeslices()
+	// simpeslices.Simpeslices()
 	// output.Output()
+	loop.GetBacteriaCount()
 }
