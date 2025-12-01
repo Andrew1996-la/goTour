@@ -37,7 +37,7 @@ func GetBacteriaCount() {
 		}
 
 		if day >= 11 {
-			count = count - count / 10
+			count = count - count/10
 		}
 
 		pairs := count / 2
@@ -46,4 +46,78 @@ func GetBacteriaCount() {
 		day++
 	}
 	fmt.Println("Количество бактерий через 30 дней:", count)
+}
+
+func freezBuz() {
+	for i := 1; i <= 100; i++ {
+		if i%3 == 0 && i%5 == 0 {
+			fmt.Println("FizzBuzz")
+		} else if i%3 == 0 {
+			fmt.Println("Fizz")
+		} else if i%5 == 0 {
+			fmt.Println("Buzz")
+		} else {
+			fmt.Println(i)
+		}
+	}
+}
+
+/*
+Для соблюдения закона о персональных данных нужно при выводе на экран скрыть
+часть email пользователя. Необходимо оставить первые два символа,
+а остальные, до @, заменить звёздочками. Например, адрес vasya83451@mail.ru
+должен быть преобразован в va********@mail.ru.
+*/
+func HiddenEmail() {
+	var hidden string // результирующая строка со звёздочками
+	email := `jfv@mail.ru`
+
+	// допишите программу
+	isHide := true
+
+	for i, ch := range email {
+
+		if ch == '@' {
+			isHide = false
+		}
+
+		if i >= 2 && isHide {
+			hidden += string('*')
+		}
+
+		if i < 2 || !isHide {
+			hidden += string(ch)
+		}
+	}
+
+	fmt.Println(hidden)
+}
+
+/*
+Ваня проходит в школе таблицу умножения. Все умножения, где хотя бы одно число чётное,
+он запомнил, но он путается, где оба числа нечётные. Напишите программу, которая 
+распечатает для него таблицу умножения только с нечётными числами. Такая памятка поможет
+Ване выучить всё и получить пятёрку на контрольной.
+*/
+func OddMultiple() {
+	for i := 3; i <= 9; i = i + 2 {
+		for j := 3; j <= 9; j = j + 2 {
+			fmt.Printf("%dx%d = %d\n", i, j, i*j)
+		}
+	}
+}
+
+func GetContainerSize() {
+	// напишите код программы
+	volume := 5_000_000
+
+	myFor:
+		for l := 100; l <= 300; l++ {
+			for h := 100; h <= 300; h++ {
+				if l * l * h == volume {
+					fmt.Println(l, l, h, volume)
+					break myFor
+				}
+			}
+		}
 }
