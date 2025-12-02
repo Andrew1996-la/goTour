@@ -26,5 +26,6 @@ func main() {
 	// loop.HiddenEmail()
 	// loop.OddMultiple()
 	// loop.SetFilms()
-	loop.GetAverageScore()
+	// loop.GetAverageScore()
+	loop.RepaceCharC()
 }
