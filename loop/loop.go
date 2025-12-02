@@ -1,6 +1,8 @@
 package loop
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func GetPush() {
 	count := 0 // количество отжиманий
@@ -146,4 +148,39 @@ func SetFilms() {
 			}
 		}
 	}
+}
+
+/*
+Представьте, что ваша знакомая ведёт в мини-группе курс про Итальянское возрождение
+и попросила вас написать программу для подсчёта среднего балла успеваемости.
+Реализуйте алгоритм подсчёта среднего балла по всем ученикам группы.
+*/
+func GetAverageScore() {
+	// оценки по отдельным ученикам
+	marks := [][]int{
+		{5, 4, 5, 5},
+		{3, 4, 4, 5, 3},
+		{2, 3, 3},
+		{5, 5, 4},
+		{4, 3, 4, 4, 3},
+	}
+	var average float32 // итоговый средний балл
+
+	// добавьте код для подсчёта среднего балла
+
+	var sum int
+	var count int
+
+	for _, person := range marks {
+		for _, markPerson := range person {
+			sum += markPerson
+			count++
+		}
+	}
+
+	fmt.Println("count", count)
+	fmt.Println("sum", sum) // 78
+	average = float32(sum) / float32(count)
+
+	fmt.Printf("%.2f", average)
 }

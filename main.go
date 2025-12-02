@@ -25,5 +25,6 @@ func main() {
 	// loop.GetBacteriaCount()
 	// loop.HiddenEmail()
 	// loop.OddMultiple()
-	loop.SetFilms()
+	// loop.SetFilms()
+	loop.GetAverageScore()
 }
