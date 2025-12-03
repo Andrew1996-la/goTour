@@ -1,7 +1,7 @@
 package main
 
 import (
-	"goTour/loop"
+	"goTour/stack"
 )
 
 func main() {
@@ -28,5 +28,11 @@ func main() {
 	// loop.SetFilms()
 	// loop.GetAverageScore()
 	// loop.RepaceCharC()
-	loop.MakeSentence()
+	// loop.MakeSentence()
+	// maptypes.AverageMarkStudent()
+	// maptypes.GetPrice()
+	// maptypes.CountListProducts()
+	// maptypes.SortPriceList()
+	// maptypes.GetArticleByTag()
+	stack.StackCalculator()
 }
