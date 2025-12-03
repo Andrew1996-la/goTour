@@ -27,5 +27,6 @@ func main() {
 	// loop.OddMultiple()
 	// loop.SetFilms()
 	// loop.GetAverageScore()
-	loop.RepaceCharC()
+	// loop.RepaceCharC()
+	loop.MakeSentence()
 }

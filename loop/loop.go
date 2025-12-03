@@ -222,3 +222,23 @@ func RepaceCharC() {
 	}
 	fmt.Println(mistakes)
 }
+
+/*
+Имеется набор слов. Необходимо объединить фрагменты этой коллекции так,
+чтобы получилось предложение "Роботы стали важны в период эмиграции c Терры."
+*/
+func MakeSentence() {
+	    words := []string{"Терры", "важны", "в", "Роботы", "стали",
+        "период", "эмиграции", "c"}
+
+    sentence := make([]string, 0, 8)
+    sentence = append(sentence, words[3:5]...)
+    sentence = append(sentence, words[1:3]...)
+    sentence = append(sentence, words[5:7]...)
+    sentence = append(sentence, words[len(words)-1:]...)
+    sentence = append(sentence, words[:1]...)
+    // добавьте в правильном порядке остальные три фрагмента
+    // ...
+
+    fmt.Println(sentence)
+}
