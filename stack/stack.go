@@ -26,57 +26,58 @@ func StackCalculator() {
 		CmdLoad, 'А', CmdPush, 10230, CmdLoad, 'Б', CmdSub, CmdSub,
 		CmdPush, 1000, CmdDiv, CmdPrint}
 
-		for i:=0; i <= len(program); i++ {
-			switch comand {
-				case CmdPush:
-					fmt.Println("fd")
+	stack := make([]int, 0, 200)
+	registers := make(map[rune]int)
+	for i := 0; i < len(program); i++ {
+		switch program[i] {
+		case CmdPush:
+			i++
+			stack = append(stack, program[i])
+		case CmdAdd:
+			if len(stack) < 2 {
+				fmt.Println("Не хватает элементов в стеке для операции сложения")
+				return
+			}
 
-				case CmdAdd:
-					
-				
-				case CmdSub:
-					
-				
-				case CmdMul:
-					
-				
-				case CmdDiv:
-					
-				
-				case CmdPop:
-					
-				
-				case CmdPrint:
-					
-				
-				case CmdSave:
-					
-				
-				case CmdLoad:
-				
-			
+			stack[len(stack)-2] += stack[len(stack)-1]
+			stack = stack[:len(stack)-1]
+		case CmdSub:
+			if len(stack) < 2 {
+				fmt.Println("Не хватает элементов в стеке для операции вычитания")
+				return
+			}
+
+			stack[len(stack)-2] -= stack[len(stack)-1]
+			stack = stack[:len(stack)-1]
+		case CmdMul:
+			if len(stack) < 2 {
+				fmt.Println("Не хватает элементов в стеке для операции умножения")
+				return
+			}
+
+			stack[len(stack)-2] *= stack[len(stack)-1]
+			stack = stack[:len(stack)-1]
+		case CmdDiv:
+			if len(stack) < 2 {
+				fmt.Println("Не хватает элементов в стеке для операции деления")
+				return
+			}
+
+			stack[len(stack)-2] /= stack[len(stack)-1]
+			stack = stack[:len(stack)-1]
+		case CmdPop:
+
+		case CmdPrint:
+			fmt.Println(stack[len(stack)-1])
+		case CmdSave:
+			i++
+			registers[rune(program[i])] = stack[len(stack)-1]
+			fmt.Println("registers: ", registers)
+		case CmdLoad:
+			i++
+			stack = append(stack, registers[rune(program[i])])
 		}
 
+		fmt.Println("stack: ", stack)
+	}
 }
-
-
-
-
-
-
-
-
-
-
-
-	// stack := make([]int, 0, 3)
-	// stack = append(stack, 2, 3)
-
-	// // fmt.Println(stack)
-	// stack = append(stack, stack[0]+stack[1])
-	// top := len(stack) - 1
-	// valueTop := stack[top]
-	// fmt.Println(stack)
-
-	// stack = stack[:top]
-	// fmt.Println("valueTop", valueTop)
