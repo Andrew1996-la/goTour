@@ -186,3 +186,30 @@ func SortByKey() {
 		fmt.Printf("%s : %d\n", name, ages[name])
 	}
 }
+
+/*
+Сортировка по значению
+*/
+func SortByValue() {
+	ages := map[string]int{
+		"Андрей": 28,
+		"Мария":  24,
+		"Борис":  31,
+		"Елена":  29,
+	}
+
+	reverseAge := make(map[int]string)
+
+	ageList := make([]int, 0, len(ages))
+
+	for name, age := range ages {
+		ageList = append(ageList, age)
+		reverseAge[age] = name
+	}
+
+	sort.Ints(ageList)
+
+	for _, value := range ageList {
+		fmt.Printf("%s : %d \n", reverseAge[value], value)
+	}
+}

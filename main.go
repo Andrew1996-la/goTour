@@ -35,5 +35,6 @@ func main() {
 	// maptypes.SortPriceList()
 	// maptypes.GetArticleByTag()
 	// stack.StackCalculator()
-	maptypes.SortByKey()
+	// maptypes.SortByKey()
+	maptypes.SortByValue()
 }
