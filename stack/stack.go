@@ -1,6 +1,8 @@
 package stack
 
-import "fmt"
+import (
+	"fmt"
+)
 
 /*
 вершина стека это последний добалвенный элемент
@@ -79,5 +81,54 @@ func StackCalculator() {
 		}
 
 		fmt.Println("stack: ", stack)
+	}
+}
+
+/*
+проверить корректность скобок с помощью стека
+| Вход       | Результат |
+| ---------- | --------- |
+| `"()[]"`   | `true`    |
+| `"({[]})"` | `true`    |
+| `"(]"`     | `false`   |
+| `"([)]"`   | `false`   |
+| `"((("`    | `false`   |
+*/
+func IsValidBrackets() {
+	sequenceBrackets := "([)]"
+
+	pairs := map[rune]rune{
+		')': '(',
+		'}': '{',
+		']': '[',
+	}
+
+	stack := make([]rune, 0, len(sequenceBrackets))
+
+	for _, char := range sequenceBrackets {
+		switch char {
+		case '(', '{', '[':
+			stack = append(stack, char)
+		case ')', '}', ']':
+			if len(stack) == 0 {
+				continue
+			}
+
+			topChar := stack[len(stack)-1]
+
+			/*
+				если пара закрывающей скобки не равна вершине, то это признак
+				не верной последовательности
+			*/
+			if pairs[char] != topChar {
+				fmt.Println("Последовательность скобок не верная")
+				break
+			}
+
+			stack = stack[:len(stack)-1]
+		}
+	}
+	if len(stack) == 0 {
+		fmt.Println("Последовательность скобок верная")
 	}
 }
