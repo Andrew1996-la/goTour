@@ -1,7 +1,7 @@
 package main
 
 import (
-	"goTour/stack"
+	maptypes "goTour/mapTypes"
 )
 
 func main() {
@@ -34,5 +34,6 @@ func main() {
 	// maptypes.CountListProducts()
 	// maptypes.SortPriceList()
 	// maptypes.GetArticleByTag()
-	stack.StackCalculator()
+	// stack.StackCalculator()
+	maptypes.SortByKey()
 }
