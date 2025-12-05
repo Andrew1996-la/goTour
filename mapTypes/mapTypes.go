@@ -156,9 +156,33 @@ func GetArticleByTag() {
 
 	// вставьте недостающий код
 	for article, articleTags := range titles {
-		for _, tag := range articleTags {			
+		for _, tag := range articleTags {
 			tags[tag] = append(tags[tag], article)
 		}
 	}
 	fmt.Println(len(tags["думы"]), len(tags["общество"]), tags["поиск"])
+}
+
+/*
+Сортировка мапы по ключу
+*/
+func SortByKey() {
+	ages := map[string]int{
+		"Андрей": 28,
+		"Мария":  24,
+		"Борис":  31,
+		"Елена":  29,
+	}
+
+	nameList := make([]string, 0, len(ages))
+
+	for name := range ages {
+		nameList = append(nameList, name)
+	}
+
+	sort.Strings(nameList)
+
+	for _, name := range nameList {
+		fmt.Printf("%s : %d\n", name, ages[name])
+	}
 }
