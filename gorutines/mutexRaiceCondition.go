@@ -14,7 +14,7 @@ var counter atomic.Uint64
 */
 
 var counter int
-var mtx sync.Mutex // иницаилизируем mutex
+// var mtx sync.Mutex // иницаилизируем mutex
 
 /*
 Мьютекс помогает избежать состояния гонки, когда несколько горутин
