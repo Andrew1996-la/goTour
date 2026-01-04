@@ -1,10 +1,10 @@
 package closure
 
-func counter() func() int {
-	var i int
+func makeCounter(start int) func() int {
+	s := start
 
 	return func() int {
-		i++
-		return i
+		s++
+		return s
 	}
 }
