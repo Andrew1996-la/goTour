@@ -3,6 +3,7 @@ package function
 import (
 	"fmt"
 	"math"
+	"sort"
 )
 
 // Average возвращает среднее арифметическое элементов слайса []int.
@@ -44,6 +45,22 @@ func Range(list []int) int {
 	return maxNum - minNum
 }
 
+func Median(list []int) int {
+	if len(list) == 0 {
+		return 0
+	}
+
+	sort.Ints(list)
+
+	if len(list)%2 == 0 {
+		midIndex := len(list) / 2
+		return (list[midIndex-1] + list[midIndex]) / 2
+
+	}
+
+	return list[len(list)/2]
+}
+
 func listCheck() {
 	lists := [][]int{
 		{},
@@ -55,11 +72,15 @@ func listCheck() {
 		{82, -23, 1, 5, 98, 100},
 		{100000, 90000, 20000, 20000, 20000, 22000, 25500, 22000},
 	}
+
 	averages := []float64{
 		0, 57, 36, 100, 4, 47, 44, 39938,
 	}
 	ranges := []int{
 		0, 0, 85, 200, 1, 109, 123, 80000,
+	}
+	medians := []int{
+		0, 57, 35, 99, 4, 44, 43, 22000,
 	}
 
 	for i, list := range lists {
@@ -68,6 +89,9 @@ func listCheck() {
 		}
 		if r := Range(list); r != ranges[i] {
 			fmt.Printf("range %d: %d != %d\n", i, ranges[i], r)
+		}
+		if median := Median(list); median != medians[i] {
+			fmt.Printf("median %d: %d != %d\n", i, medians[i], median)
 		}
 	}
 	fmt.Println("Тестирование завершено")
