@@ -61,6 +61,30 @@ func Median(list []int) int {
 	return list[len(list)/2]
 }
 
+func Mode(list []int) (modeList []int, modeCount int) {
+	if len(list) == 0 {
+		return []int{}, 1
+	}
+
+	modeMap := make(map[int]int)
+	res := make([]int, 0)
+	maxRepeat := 1
+
+	for _, v := range list {
+		modeMap[v]++
+	}
+
+	for value, count := range modeMap {
+		if count > 1 && count >= maxRepeat {
+			res = append(res, value)
+			maxRepeat = count
+		}
+	}
+
+	sort.Ints(res)
+	return res, maxRepeat
+}
+
 func listCheck() {
 	lists := [][]int{
 		{},
@@ -82,6 +106,15 @@ func listCheck() {
 	medians := []int{
 		0, 57, 35, 99, 4, 44, 43, 22000,
 	}
+	modes := [][]int{
+		{}, {}, {}, {},
+		{4},
+		{-7, 102}, {},
+		{20000},
+	}
+	mcount := []int{
+		1, 1, 1, 1, 3, 2, 1, 3,
+	}
 
 	for i, list := range lists {
 		if average := math.Round(Average(list)); average != averages[i] {
@@ -92,6 +125,19 @@ func listCheck() {
 		}
 		if median := Median(list); median != medians[i] {
 			fmt.Printf("median %d: %d != %d\n", i, medians[i], median)
+		}
+		mode, count := Mode(list)
+		if len(mode) != len(modes[i]) {
+			fmt.Printf("len mode %d: %v != %v'\n", i, modes[i], mode)
+		} else {
+			for j, v := range mode {
+				if v != modes[i][j] {
+					fmt.Printf("mode %d: %v != %v\n", i, modes[i], mode)
+				}
+			}
+		}
+		if count != mcount[i] {
+			fmt.Printf("mcount %d: %d != %d\n", i, mcount[i], count)
 		}
 	}
 	fmt.Println("Тестирование завершено")
