@@ -1,4 +1,4 @@
-package main
+package paractice
 
 import (
 	"fmt"
@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-func worker(jobs <-chan int, wg *sync.WaitGroup, workerId int) {
+func baseWorkerPool(jobs <-chan int, wg *sync.WaitGroup, workerId int) {
 	defer wg.Done()
 	for job := range jobs {
 		time.Sleep(200 * time.Millisecond)
@@ -14,7 +14,7 @@ func worker(jobs <-chan int, wg *sync.WaitGroup, workerId int) {
 	}
 }
 
-func main() {
+func testBaseWorkerPool() {
 	wg := &sync.WaitGroup{}
 	jobs := make(chan int)
 	workerCount := 3
@@ -22,7 +22,7 @@ func main() {
 	// запускаем воркеров
 	for i := 1; i <= workerCount; i++ {
 		wg.Add(1)
-		go worker(jobs, wg, i)
+		go baseWorkerPool(jobs, wg, i)
 	}
 
 	// заполняю канал с работой
