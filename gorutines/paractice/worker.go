@@ -1,4 +1,4 @@
-package main
+package paractice
 
 import (
 	"fmt"
@@ -14,7 +14,7 @@ func worker(id int, jobs <-chan int, wg *sync.WaitGroup) {
 	}
 }
 
-func main() {
+func workerTest() {
 	jobs := make(chan int)
 	wg := &sync.WaitGroup{}
 
