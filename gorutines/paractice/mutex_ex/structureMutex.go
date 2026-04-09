@@ -1,4 +1,4 @@
-package paractice
+package mutex_ex
 
 import (
 	"fmt"
