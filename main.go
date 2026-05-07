@@ -1,35 +1,42 @@
 package main
 
-import (
-	"fmt"
-	"sync"
-	"time"
-)
+import "fmt"
 
-func worker(id int, jobs <-chan int, wg *sync.WaitGroup) {
-	defer wg.Done()
-	for job := range jobs {
-		time.Sleep(200 * time.Millisecond)
-		fmt.Printf("worker %d processed job %d\n", id, job)
-	}
+// statistics := [
+//     [{userId:1, steps:1000}, {userId:2, steps: 1500}],
+//     [{userId:2, steps: 1000}]
+// ]
+
+// champ := {userId: 2, steps: 2500}
+
+type Stat struct {
+	userId int
+	steps  int
 }
 
 func main() {
-	jobs := make(chan int)
-	wg := &sync.WaitGroup{}
-
-	workerCount := 3
-	for i := 1; i <= workerCount; i++ {
-		wg.Add(1)
-		go worker(i, jobs, wg)
+	stats := [][]Stat{
+		{{userId: 1, steps: 1000}, {userId: 2, steps: 1500}},
+		{{userId: 2, steps: 1000}},
 	}
 
-	for i := 1; i <= 10; i++ {
-		jobs <- i
+	studendStat := make(map[int]int)
+
+	for _, day := range stats {
+		for _, studend := range day {
+			studendStat[studend.userId] += studend.steps
+		}
 	}
-	close(jobs)
 
-	wg.Wait()
 
-	fmt.Println("all jobs processed")
+    var champ Stat
+
+    for id, steps := range studendStat {
+        if steps > champ.steps {
+            champ.userId = id
+            champ.steps = steps
+        }
+    }
+
+    fmt.Println(champ)
 }
